@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-function Canvas() {
+function Canvas({ color }) {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -13,7 +13,9 @@ function Canvas() {
     canvas.height = window.innerHeight * 0.8;
 
     const context = canvas.getContext("2d");
-    context.strokeStyeld = "black";
+    context.strokeStye = "red";
+    //context.strokeStyled = "red";
+    context.filStyle = "red";
     context.lineWidth = 2.5;
     contextRef.current = context;
 
