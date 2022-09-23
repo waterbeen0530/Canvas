@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 function Canvas({ color }) {
   const canvasRef = useRef(null);
-  const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [ctx, setCtx] = useState(null);
 
@@ -13,14 +12,23 @@ function Canvas({ color }) {
     canvas.height = window.innerHeight * 0.8;
 
     const context = canvas.getContext("2d");
-    context.strokeStye = "red";
-    //context.strokeStyled = "red";
-    context.filStyle = "red";
+    context.strokeStyle = color;
+    context.filStyle = color;
     context.lineWidth = 2.5;
-    contextRef.current = context;
 
     setCtx(context);
   }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+
+    const context = canvas.getContext("2d");
+    context.strokeStyle = color;
+    context.filStyle = color;
+    context.lineWidth = 2.5;
+
+    setCtx(context);
+  }, [color]);
 
   const startDrawing = () => {
     setIsDrawing(true);
